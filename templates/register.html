@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rejestracja - InfoHub</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-form">
+            <h2>Zarejestruj się</h2>
+            <form action="/register" method="POST">
+                <label for="username">Nazwa użytkownika:</label>
+                <input type="text" id="username" name="username" required>
+                <label for="password">Hasło:</label>
+                <input type="password" id="password" name="password" required>
+                <button type="submit" class="btn-primary">Zarejestruj się</button>
+            </form>
+            <p>Masz już konto? <a href="/login" class="btn-link">Zaloguj się</a></p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,248 @@
+/* Resetowanie domyślnych stylów */
+*,
+*:before,
+*:after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f4f7fc;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    height: 100vh;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Tryb ciemny */
+body.dark-mode {
+    background-color: #2d3436;
+    color: #ffffff;
+}
+
+/* Panel boczny (Sidebar) */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #2f3640;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 30px 20px;
+    color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+body.dark-mode .sidebar {
+    background-color: #1a1c22;
+}
+
+.sidebar .logo {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.sidebar .menu {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar .menu li {
+    margin-bottom: 25px;
+}
+
+.sidebar .menu a {
+    text-decoration: none;
+    color: #dfe6e9;
+    font-size: 18px;
+    font-weight: 500;
+    display: block;
+    transition: all 0.3s ease;
+    padding: 8px 0;
+}
+
+.sidebar .menu a:hover {
+    color: #0984e3;
+    border-left: 4px solid #0984e3;
+    padding-left: 10px;
+}
+
+/* Zawartość strony */
+.content {
+    margin-left: 250px;
+    padding: 40px 50px;
+    width: 100%;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode .content {
+    background-color: #2d3436;
+    color: #fff;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.header h1 {
+    font-size: 30px;
+    font-weight: 600;
+    color: #2d3436;
+    transition: color 0.3s ease;
+}
+
+body.dark-mode .header h1 {
+    color: #fff;
+}
+
+.user-menu {
+    position: relative;
+}
+
+.user-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #0984e3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.user-icon i {
+    color: white;
+    font-size: 20px;
+}
+
+.user-icon:hover {
+    background-color: #74b9ff;
+}
+
+/* Menu rozwijane (dropdown) */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background-color: #2f3640;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    width: 150px;
+    padding: 10px 0;
+    z-index: 1;
+}
+
+body.dark-mode .dropdown-menu {
+    background-color: #1a1c22;
+}
+
+.dropdown-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown-menu li {
+    padding: 10px;
+    text-align: center;
+}
+
+.dropdown-menu li a,
+.dropdown-menu li button {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    display: block;
+    transition: background-color 0.3s;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown-menu li a:hover,
+.dropdown-menu li button:hover {
+    background-color: #0984e3;
+}
+
+/* Pokaż menu po kliknięciu */
+.dropdown-menu.show {
+    display: block;
+}
+
+/* Sekcja główna */
+.main-section {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode .main-section {
+    background-color: #34495e;
+}
+
+.main-section p {
+    font-size: 18px;
+    color: #636e72;
+    margin-bottom: 30px;
+}
+
+body.dark-mode .main-section p {
+    color: #dfe6e9;
+}
+
+button {
+    background-color: #0984e3;
+    color: white;
+    font-size: 16px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #74b9ff;
+}
+
+/* Stylizacja tła */
+.background {
+    width: 430px;
+    height: 520px;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    left: 50%;
+    top: 50%;
+}
+
+.background .shape {
+    height: 200px;
+    width: 200px;
+    position: absolute;
+    border-radius: 50%;
+}
+
+.shape:first-child {
+    background: linear-gradient(#1845ad, #23a2f6);
+    left: -80px;
+    top: -80px;
+}
+
+.shape:last-child {
+    background: linear-gradient(to right, #ff512f, #f09819);
+    right: -30px;
+    bottom: -80px;
+}
+

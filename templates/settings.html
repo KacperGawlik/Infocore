@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ustawienia</title>
+</head>
+<body>
+    <h1>Ustawienia użytkownika</h1>
+    <form method="POST">
+        <label for="username">Nazwa użytkownika</label>
+        <input type="text" id="username" name="username" value="{{ username }}" required><br><br>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" value="{{ email }}"><br><br>
+
+        <label for="password">Nowe hasło</label>
+        <input type="password" id="password" name="password"><br><br>
+
+        <button type="submit">Zapisz zmiany</button>
+    </form>
+</body>
+</html>

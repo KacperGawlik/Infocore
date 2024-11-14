@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logowanie - InfoHub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='login_style.css') }}">
+</head>
+<body>
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    <form action="/login" method="POST">
+        <h3>Zaloguj się</h3>
+
+        <label for="username">Nazwa użytkownika</label>
+        <input type="text" placeholder="Email lub numer telefonu" id="username" name="username" required>
+
+        <label for="password">Hasło</label>
+        <input type="password" placeholder="Hasło" id="password" name="password" required>
+
+        <button type="submit">Zaloguj się</button>
+        <div class="social">
+            <div class="go"><i class="fab fa-google"></i>  Google</div>
+            <div class="fb"><i class="fab fa-facebook"></i>  Facebook</div>
+        </div>
+    </form>
+</body>
+</html>
+

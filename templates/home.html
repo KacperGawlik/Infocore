@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Struktura strony -->
+    <div class="sidebar">
+        <div class="logo">InfoHub</div>
+        <ul class="menu">
+            <li><a href="#">Krypto</a></li>
+            <li><a href="#">Akcje</a></li>
+            <li><a href="#">Airdropy</a></li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <div class="header">
+            <h1>Witaj, {{ username }}!</h1>
+            <div class="user-menu">
+                <div class="user-icon" onclick="toggleUserMenu()">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div id="user-menu" class="dropdown-menu">
+                    <ul>
+                        <li><a href="/logout">Wyloguj się</a></li>
+                        <li><a href="#">Ustawienia</a></li>
+                        <li><button onclick="toggleDarkMode()">Tryb Ciemny</button></li> <!-- Nowy przycisk -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="main-section">
+            <p>Witaj na stronie głównej aplikacji. Tu znajdziesz najnowsze informacje na temat kryptowalut oraz akcji!</p>
+            <button onclick="window.location.href='/logout'">Wyloguj się</button>
+        </div>
+    </div>
+
+    <script>
+        function toggleUserMenu() {
+            const userMenu = document.getElementById('user-menu');
+            userMenu.classList.toggle('show');
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+    </script>
+</body>
+</html>
+
