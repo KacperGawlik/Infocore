@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Shardeum</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Struktura strony -->
     <div class="sidebar">
         <div class="logo">InfoHub</div>
         <ul class="menu">
@@ -17,14 +16,12 @@
             <li><a href="#">Akcje</a></li>
             <li><a href="#">Airdropy</a></li>
             <li><a href="{{ url_for('shardeum') }}">Shardeum</a></li>
-
-
         </ul>
     </div>
 
     <div class="content">
         <div class="header">
-            <h1>Witaj, {{ username }}!</h1>
+            <h1>Shardeum</h1>
             <div class="user-menu">
                 <div class="user-icon" onclick="toggleUserMenu()">
                     <i class="fas fa-user"></i>
@@ -33,14 +30,44 @@
                     <ul>
                         <li><a href="/logout">Wyloguj się</a></li>
                         <li><a href="#">Ustawienia</a></li>
-                        <li><button onclick="toggleDarkMode()">Tryb Ciemny</button></li> <!-- Nowy przycisk -->
+                        <li><button onclick="toggleDarkMode()">Tryb Ciemny</button></li>
                     </ul>
                 </div>
             </div>
         </div>
+
         <div class="main-section">
-            <p>Witaj na stronie głównej aplikacji. Tu znajdziesz najnowsze informacje na temat kryptowalut oraz akcji!</p>
-            <button onclick="window.location.href='/logout'">Wyloguj się</button>
+            <div class="form-container">
+                <h2 class="centered">Znajdź pasujące słowa</h2>
+                <form method="POST" action="{{ url_for('shardeum') }}">
+                    <div class="form-group">
+                        <input type="text" id="pattern" name="pattern" maxlength="5" placeholder="Wzorzec (np. __a__)" required>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" id="exclude_letters" name="exclude_letters" placeholder="Litery do wykluczenia (np. a,b)">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" id="required_letters" name="required_letters" placeholder="Wymagane litery (np. e,a)">
+                    </div>
+
+                    <button type="submit" class="submit-btn">Filtruj słowa</button>
+                </form>
+            </div>
+
+            <div class="result-section">
+                <h3 class="centered">Wyniki:</h3>
+                <ul class="result-list">
+                    {% if filtered_words %}
+                        {% for word in filtered_words %}
+                            <li class="centered">{{ word }}</li>
+                        {% endfor %}
+                    {% else %}
+                        <li class="centered">Brak pasujących słów</li>
+                    {% endif %}
+                </ul>
+            </div>
         </div>
     </div>
 
@@ -56,4 +83,3 @@
     </script>
 </body>
 </html>
-

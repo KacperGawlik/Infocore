@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krypto - Ceny</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Chart.js for Crypto Price Chart -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="logo">InfoHub</div>
+        <ul class="menu">
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('krypto') }}">Krypto</a></li>
+            <li><a href="#">Akcje</a></li>
+            <li><a href="#">Airdropy</a></li>
+            <li><a href="{{ url_for('shardeum') }}">Shardeum</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <div class="header">
+            <h1>Aktualne Ceny Kryptowalut</h1>
+        </div>
+
+        <!-- Wyszukiwarka -->
+        <div class="search-bar">
+            <input type="text" id="searchCoin" placeholder="Wyszukaj kryptowalutę...">
+        </div>
+
+        <!-- Krypto Prices -->
+        <div class="main-section">
+            <div class="crypto-prices">
+                <h2>Ceny Kryptowalut</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nazwa</th>
+                            <th>Symbol</th>
+                            <th>Cena (USD)</th>
+                            <th>Kapitalizacja</th>
+                            <th>Wolumen 24h</th>
+                            <th>Zmiana 24h</th>
+                            <th>Wysokość 24h</th>
+                            <th>Niska 24h</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for coin in crypto_data %}
+                            <tr>
+                                <td>{{ coin.name }}</td>
+                                <td>{{ coin.symbol | upper }}</td>
+                                <td>{{ format_large_numbers(coin.current_price) }}</td>
+                                <td>{{ format_large_numbers(coin.market_cap) }}</td>
+                                <td>{{ format_large_numbers(coin.total_volume) }}</td>
+                                <td>{{ "%.2f"|format(coin.price_change_percentage_24h) }}%</td>
+                                <td>{{ format_large_numbers(coin.high_24h) }}</td>
+                                <td>{{ format_large_numbers(coin.low_24h) }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Wykresy -->
+        <div class="chart-container">
+            <h3>Zmiana ceny Bitcoin (BTC) w ciągu ostatnich 24h</h3>
+            {% if btc_labels %}
+                <canvas id="btcChart"></canvas>
+            {% else %}
+                <p>Brak danych do wyświetlenia wykresu.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Script for toggling user menu and dark mode -->
+    <script>
+        function toggleUserMenu() {
+            const userMenu = document.getElementById('user-menu');
+            userMenu.classList.toggle('show');
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        // Inicjalizacja wykresu Bitcoin, jeśli dane są dostępne
+        {% if btc_labels %}
+            var ctx = document.getElementById('btcChart').getContext('2d');
+            var btcChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: {{ btc_labels | tojson }},
+                    datasets: [{
+                        label: 'Bitcoin (BTC) - Cena w USD',
+                        data: {{ btc_prices | tojson }},
+                        borderColor: 'rgb(75, 192, 192)',
+                        tension: 0.1
+                    }]
+                }
+            });
+        {% endif %}
+    </script>
+</body>
+</html>
